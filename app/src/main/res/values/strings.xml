@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">Timber</string>
+    <string name="app_name">Meloon</string>
     <string name="action_settings">Settings</string>
 
     <string name="accessibility_play">Play</string>
@@ -168,10 +168,7 @@
     <string name="lyrics_loading">Loading...</string>
 
     <string name="about_dialog_body"><![CDATA[
-    <b>Timber</b> is a fully featured open source music player.<br/><br/>
-    Designed and developed by <b>Naman Dwivedi</b>. Check out my
-    <a href="https://namand.in">Website</a> and <a href="https://github.com/naman14/Timber">GitHub</a>
-    <br/><br/>Also checkout <a href="https://play.google.com/store/apps/details?id=com.naman14.timberx">TimberX</a>,
-    material themed music player that works across all form factors.
+    <b>Meloon</b> is a fully featured open source music player.<br/><br/>
+    Designed and developed by <b>Minkyu Park</b>
     ]]></string>
 </resources>

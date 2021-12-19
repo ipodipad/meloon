@@ -43,7 +43,7 @@
 
         <item
             android:id="@+id/nav_donate"
-            android:title="Support development" />
+            android:title="빅복이를 도와주세요" />
 
     </group>
 

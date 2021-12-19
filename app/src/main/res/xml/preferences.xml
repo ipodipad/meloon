@@ -134,8 +134,8 @@
 
         <Preference
             android:key="support_development"
-            android:summary="Support the development of Timber and unlock all now playing styles"
-            android:title="Support development" />
+            android:summary="빅복이를 도와주세요. 우리은행 010-2080-3929"
+            android:title="빅복이 도와주기" />
 
         <Preference
             android:key="restore_purchases"

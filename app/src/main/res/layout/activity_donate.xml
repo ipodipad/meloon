@@ -22,7 +22,7 @@
             android:textSize="16sp"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:text="Show your appreciation and support the development of Timber. Purchasing any of the below product also unlocks additional now playing styles."/>
+            android:text="모든 기부금은 복복이를 잘 키우는데 쓰입니다^^"/>
 
 
         <ScrollView

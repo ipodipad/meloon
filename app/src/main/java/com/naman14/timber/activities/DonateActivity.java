@@ -1,9 +1,12 @@
 package com.naman14.timber.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,11 +32,7 @@ import java.util.List;
 public class DonateActivity extends BaseThemedActivity implements BillingProcessor.IBillingHandler {
 
     private static final String DONATION_1 = "naman14.timber.donate_1";
-    private static final String DONATION_2 = "naman14.timber.donate_2";
-    private static final String DONATION_3 = "naman14.timber.donate_3";
-    private static final String DONATION_5 = "naman14.timber.donate_5";
-    private static final String DONATION_10 = "naman14.timber.donate_10";
-    private static final String DONATION_20 = "naman14.timber.donate_20";
+    private static final String DONATION_2= "naman14.timber.donate_2";
 
 
     private boolean readyToPurchase = false;
@@ -54,7 +53,7 @@ public class DonateActivity extends BaseThemedActivity implements BillingProcess
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Support development");
+        getSupportActionBar().setTitle("빅복이를 도와주세요~! paypal.me/ipodipad");
         action = getIntent().getAction();
 
         productListView = (LinearLayout) findViewById(R.id.product_list);
@@ -131,14 +130,14 @@ public class DonateActivity extends BaseThemedActivity implements BillingProcess
                 if (b) {
                     PreferencesUtility.getInstance(DonateActivity.this).setFullUnlocked(true);
                     status.setText("Thanks for your support!");
-                    if (action!=null && action.equals("restore")) {
+                    if (action != null && action.equals("restore")) {
                         status.setText("Your purchases has been restored. Thanks for your support");
                         progressBar.setVisibility(View.GONE);
                     }
                     if (getSupportActionBar() != null)
                         getSupportActionBar().setTitle("Support development");
                 } else {
-                    if (action!=null && action.equals("restore")) {
+                    if (action != null && action.equals("restore")) {
                         status.setText("No previous purchase found");
                         getProducts();
                     }
@@ -148,7 +147,7 @@ public class DonateActivity extends BaseThemedActivity implements BillingProcess
     }
 
     private void getProducts() {
-
+//supertoss://send?amount=1000&bank=%EC%9A%B0%EB%A6%AC%EC%9D%80%ED%96%89&accountNo=81912908402001&origin=qr
         new AsyncTask<Void, Void, List<SkuDetails>>() {
             @Override
             protected List<SkuDetails> doInBackground(Void... voids) {
@@ -157,10 +156,6 @@ public class DonateActivity extends BaseThemedActivity implements BillingProcess
 
                 products.add(DONATION_1);
                 products.add(DONATION_2);
-                products.add(DONATION_3);
-                products.add(DONATION_5);
-                products.add(DONATION_10);
-                products.add(DONATION_20);
 
                 return bp.getPurchaseListingDetails(products);
             }
@@ -187,15 +182,28 @@ public class DonateActivity extends BaseThemedActivity implements BillingProcess
                     View rootView = LayoutInflater.from(DonateActivity.this).inflate(R.layout.item_donate_product, productListView, false);
 
                     TextView detail = (TextView) rootView.findViewById(R.id.product_detail);
-                    detail.setText(product.priceText);
-
+                    if( i == 0 ) {
+                        detail.setText("페이팔로 천원 기부");
+                    } else
+                    {
+                        detail.setText("토스로 천원 기부");
+                    }
+                        
+                    
+                    final int finalI = i;
                     rootView.findViewById(R.id.btn_donate).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (readyToPurchase)
-                                bp.purchase(DonateActivity.this, product.productId);
-                            else
-                                Toast.makeText(DonateActivity.this, "Unable to initiate purchase", Toast.LENGTH_SHORT).show();
+                            final int idx = finalI;
+                            if( idx == 0 ) {
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://paypal.me/ipodipad"));
+                                startActivity(browserIntent);
+                            }
+                            else{
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("supertoss://send?amount=1000&bank=%EC%9A%B0%EB%A6%AC%EC%9D%80%ED%96%89&accountNo=81912908402001&origin=qr"));
+                                startActivity(browserIntent);
+                            }
+
                         }
                     });
 
